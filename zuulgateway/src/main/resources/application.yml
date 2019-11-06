@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: zuulgateway
+server:
+  port: 9000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    fetchRegistry: true
+    registerWithEureka: true
+  instance:
+    preferIpAddress: false
+
+ #routes endpoint暴露
+management:
+  endpoints:
+    web:
+      exposure:
+        include: routes
+
+#映射
+zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 60000   #socket超时
+  routes:
+    account:
+      path: /account/**
+      serviceId: user
+      stripPrefix: false
+      sensitiveHeaders:
+    train:
+      path: /train/**
+      serviceId: train
+      stripPrefix: false
+      sensitiveHeaders:
+    security:
+      path: /security/**
+      serviceId: security
+      stripPrefix: false
+      sensitiveHeaders:   Cookie,Set-Cookie # Exclude authorization from sensitive headers
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

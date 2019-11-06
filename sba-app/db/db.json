@@ -1,0 +1,64 @@
+{
+  "mentor": [
+    {
+      "id": 1,
+      "userName": "1 string",
+      "password": "1 string",
+      "firstName": "1 string",
+      "lastName": " string",
+      "email": " string",
+      "contactNumber": 123,
+      "regCode": " string",
+      "role": " string",
+      "linkedinUrl": " string",
+      "yearsofExperience": 3,
+      "active": " boolean",
+      "confirmedSignup": " boolean",
+      "resetPassword": " boolean",
+      "resetPasswordDate": " Date",
+      "rating": 5,
+      "timeZone": " string",
+      "mentorProfile": " string",
+      "startingDate": " string",
+      "endingDate": " string",
+      "technology": "",
+      "technologyStr": " Struts",
+      "dateRange": " string"
+    },
+    {
+      "id": 2,
+      "userName": " 2",
+      "password": " 2",
+      "firstName": " 2",
+      "lastName": " string",
+      "email": " string",
+      "contactNumber": 123,
+      "regCode": " string",
+      "role": " string",
+      "linkedinUrl": " string",
+      "yearsofExperience": 3,
+      "active": " boolean",
+      "confirmedSignup": " boolean",
+      "resetPassword": " boolean",
+      "resetPasswordDate": " Date",
+      "rating": 5,
+      "timeZone": " string",
+      "mentorProfile": " string",
+      "startingDate": " string",
+      "endingDate": " string",
+      "technology": "",
+      "technologyStr": " Struts",
+      "dateRange": " string"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

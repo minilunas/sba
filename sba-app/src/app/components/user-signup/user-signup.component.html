@@ -1,0 +1,94 @@
+<div class="container-fluid" style="margin-top: 80px;width:30%;">
+  <form [formGroup]="enrollForm" autocomplete="off" novalidate (ngSubmit)="enroll(enrollForm.value)" fxLayout="column wrap"
+        fxLayoutAlign="center center" fxLayoutGap="10px">
+    <div class="text-center mb-4">
+      <img class="mb-4" src="/assets/img/userlogo.png" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Add User</h1>
+      <span style="margin-top: 15px;">Do you  have an account? <a href="/user-login">login</a></span>
+    </div>
+
+    <div class="form-label-group">
+      <label for="email">Email address</label>
+      <input type="email" id="email" formControlName="email" class="form-control" placeholder="Email address" required autofocus>
+      <div *ngIf="enrollForm.get('email').invalid && (enrollForm.get('email').dirty || enrollForm.get('email').touched)"
+           class="alert alert-danger">
+        email is required.
+
+      </div>
+    </div>
+
+    <br/>
+    <div class="form-label-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" class="form-control" placeholder="password" required>
+      <div *ngIf="enrollForm.get('password').invalid && (enrollForm.get('password').dirty || enrollForm.get('password').touched)"
+           class="alert alert-danger">
+        password is required.
+
+      </div>
+    </div>
+    <div class="form-label-group">
+      <label for="role">Role</label>
+      <select id="role" formControlName="role" class="form-control" placeholder="role" required>
+        <option value="">please select a role</option>
+        <option value="user">studen</option>
+        <option value="mentor">mentor</option>
+      </select>
+      <div *ngIf="enrollForm.get('role').invalid && (enrollForm.get('role').dirty || enrollForm.get('role').touched)"
+           class="alert alert-danger">
+        role is required.
+
+      </div>
+    </div>
+    <br/>
+    <div class="form-group" >
+      <label for="firstname">Username</label>
+      <input type="text" formControlName="firstname" class="form-control" placeholder="Username" id="firstname" required>
+      <div *ngIf="enrollForm.get('firstname').invalid && (enrollForm.get('firstname').dirty || enrollForm.get('firstname').touched)"
+           class="alert alert-danger">
+        Username is required.
+
+      </div>
+    </div>
+
+    <div class="form-label-group" *ngIf="enrollForm.get('role').value=='mentor'">
+      <label for="linkedinUrl">LinkedIn Url</label>
+      <input type="text" id="linkedinUrl" formControlName="linkedinUrl" class="form-control" placeholder="linkedinUrl">
+
+    </div>
+    <br/>
+
+    <div class="form-group" *ngIf="enrollForm.get('role').value=='mentor'">
+      <label for="yearsofExperience">Years Of Experience</label>
+      <input type="number" formControlName="yearsofExperience" class="form-control" placeholder="yearsofExperience" id="yearsofExperience" required>
+    </div>
+
+    <div class="form-group" *ngIf="enrollForm.get('role').value=='mentor'">
+      <label for="technologyStr">Technology   <button (click)="editSkill()" type="button" class="btn-info">Pick one</button></label>
+      <textarea type="text" formControlName="technologyStr" required class="form-control" placeholder="Technology" id="technologyStr"
+                [(ngModel)]="technologyStr" ></textarea>
+    </div>
+
+    <!--    <div class="form-group" *ngIf="enrollForm.get('role').value=='mentor'">-->
+    <!--      <label for="startTime">Start Time </label>-->
+    <!--      <timepicker id="startTime"></timepicker>-->
+    <!--    </div>-->
+
+    <!--    <div class="form-group" *ngIf="enrollForm.get('role').value=='mentor'">-->
+    <!--      <label for="endTime">End Time </label>-->
+    <!--      <timepicker id="endTime"></timepicker>-->
+    <!--    </div>-->
+
+
+    <div class="form-group" *ngIf="enrollForm.get('role').value=='mentor'">
+      <label for="mentorProfile">Profile</label>
+      <textarea type="text" formControlName="mentorProfile" class="form-control" placeholder="mentorProfile" id="mentorProfile">
+      </textarea>
+    </div>
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="enrollForm.invalid">register</button>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2019-2029</p>
+  </form>
+
+</div>

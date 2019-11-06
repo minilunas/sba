@@ -1,0 +1,36 @@
+<div class="container-fluid" style="margin-top: 80px;width:30%;">
+
+  <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="login(loginForm.value)" fxLayout="column wrap"
+        fxLayoutAlign="center center" fxLayoutGap="10px">
+    <div class="text-center mb-4">
+      <img class="mb-4" src="/assets/img/userlogo.png" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Login Mentor On Demand</h1>
+      <span style="margin-top: 15px;">Don't have an account? <a href="/user-signup">Sign up</a></span>
+    </div>
+
+    <div class="form-label-group">
+      <label for="username">Email/Username </label>
+      <input type="username" id="username" formControlName="username" class="form-control" placeholder="Email/Username" required autofocus>
+      <div *ngIf="loginForm.get('username').invalid && (loginForm.get('username').dirty || loginForm.get('username').touched)"
+           class="alert alert-danger">
+        email/Username is required.
+
+      </div>
+    </div>
+
+    <br/>
+    <div class="form-label-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" class="form-control" placeholder="password" required>
+      <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)"
+           class="alert alert-danger">
+        password is required.
+
+      </div>
+    </div>
+    <br/>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2019-2029</p>
+  </form>
+</div>

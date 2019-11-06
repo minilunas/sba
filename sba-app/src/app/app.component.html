@@ -1,0 +1,47 @@
+<div class="container">
+
+
+  <nav class="navbar fixed-top navbar-expand-sm bg-primary navbar-dark">
+    <a class="navbar-brand" href="#">Mentor On Demand</a>
+    <ul class="navbar-nav">
+
+      <li class="nav-item ">
+        <a routerLink="/mentor-search" routerLinkActive="active" class="nav-link">mentor-search</a>
+      </li>
+
+      <li class="nav-item " *ngIf="currentUser!=null">
+        <a routerLink="/trainings-user" routerLinkActive="active" class="nav-link">trainings</a>
+      </li>
+<!--      <li class="nav-item " *ngIf="role=='user'">-->
+<!--        <a routerLink="/users-proposals" routerLinkActive="active" class="nav-link">proposals</a>-->
+<!--      </li>-->
+
+<!--      <li class="nav-item " *ngIf="role=='mentor'">-->
+<!--        <a routerLink="/trainings-mentor" routerLinkActive="active" class="nav-link">trainings</a>-->
+<!--      </li>-->
+
+<!--      <li class="nav-item " *ngIf="role=='mentor'">-->
+<!--        <a routerLink="/mentors-proposals" routerLinkActive="active" class="nav-link">proposals</a>-->
+<!--      </li>-->
+    </ul>
+
+    <ul class="navbar-nav  navbar-right">
+
+      <li class="nav-item " *ngIf="currentUser==null">
+        <a routerLink="/user-signup" routerLinkActive="active" class="nav-link">signup</a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser==null">
+        <a routerLink="/user-login" routerLinkActive="active" class="nav-link">login</a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser!=null">
+        <a href="#" routerLinkActive="active" class="nav-link" (click)="logout()">logout&nbsp;&nbsp;</a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser!=null">
+        <a href="javascript:void(0);" routerLinkActive="active" class="nav-link" >&nbsp;&nbsp;welcome,{{username}} &nbsp;&nbsp;your role is {{role}}</a>
+      </li>
+    </ul>
+  </nav>
+
+</div>
+
+<router-outlet></router-outlet>

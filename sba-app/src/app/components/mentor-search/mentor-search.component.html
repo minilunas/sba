@@ -1,0 +1,99 @@
+<div class="container-fluid" style="margin-top: 80px;width:90%;">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <mat-form-field>
+
+          <input type="search"  matInput class="form-control" formControlName="technologyStr" id="technologyStr"  placeholder="Enter Mentor/Technology">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+<!--      <div class="col-md-3">-->
+<!--        <div class="form-group">-->
+<!--          <input type="text" id="dateRange" name="dateRange"  placeholder="Enter date"  class="form-control"   bsDaterangepicker>-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="col-md-3">
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary"  [disabled]="searchForm.invalid">
+            Search
+          </button>
+
+        </div>
+      </div>
+    </div>
+    <br/>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Mentor name</th>
+        <th>Rate</th>
+        <th>Technology</th>
+        <th>Experience</th>
+        <th *ngIf="user!=null"></th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let item of mentorList; let i = index">
+      <tr>
+        <td>{{item.firstname}}</td>
+        <td>{{item.rating}}</td>
+        <td>{{item.technologyStr}}</td>
+        <td>{{item.yearsofExperience}}</td>
+        <td *ngIf="user!=null&&role=='user'">
+          <button type="button" class="btn btn-primary" (click)="openModal(item.id,item.email,template)">request</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </form>
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Request</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="requestForm" autocomplete="off" novalidate (ngSubmit)="submitRequest()" fxLayout="column wrap"
+            fxLayoutAlign="center center" fxLayoutGap="10px">
+        <div class="text-center mb-4">
+          <h1 class="h3 mb-3 font-weight-normal">Request</h1>
+          <span style="margin-top: 15px;">Please fill following details to the mentor for approvel</span>
+        </div>
+
+        <div class="form-label-group">
+          <label for="dateRange1">Training Date</label>
+          <input type="text"  autocomplete="off"  formControlName="dateRange1" id="dateRange1" name="dateRange1"  placeholder="Enter date"  class="form-control"   bsDaterangepicker>
+          <div *ngIf="requestForm.get('dateRange1').invalid && (requestForm.get('dateRange1').dirty || requestForm.get('dateRange1').touched)"
+               class="alert alert-danger">
+            Training Date is required.
+          </div>
+        </div>
+
+        <br/>
+        <div class="form-label-group">
+          <label for="remarks">Remark</label>
+          <textarea id="remarks" formControlName="remarks" class="form-control" placeholder="remarks" required rows="4">
+          </textarea>
+          <div *ngIf="requestForm.get('remarks').invalid && (requestForm.get('remarks').dirty || requestForm.get('remarks').touched)"
+               class="alert alert-danger">
+            Remark is required.
+
+          </div>
+        </div>
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"  >Submit Request</button>
+
+      </form>
+
+      <p class="mt-5 mb-3 text-muted text-center">&copy; 2019-2029</p>
+    </div>
+  </ng-template>
+</div>
